@@ -1,0 +1,128 @@
+:root{
+  --max: 1160px;
+  --txt: #e5e7eb;
+  --muted:#9ca3af;
+  --card: rgba(15,23,42,0.9);
+  --accent:#ef4444;
+  --accent2:#7f1d1d;
+  --shadow: 0 40px 80px rgba(0,0,0,.6);
+  --radius: 12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font: 17px/1.7 'Segoe UI', Roboto, system-ui, -apple-system;
+  color: var(--txt);
+  background: #07090c url('img/bg-terror-noise.png') center/cover fixed no-repeat;
+}
+
+/* capes fosques + esquitxos en parallax */
+body::before, body::after{
+  content:''; position:fixed; inset:0; pointer-events:none;
+}
+body::before{
+  background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25) 40%, rgba(0,0,0,.65));
+}
+body::after{
+  background: url('img/overlay-esquitxos.svg') center/110% no-repeat;
+  mix-blend-mode: multiply; opacity:.55;
+  animation: tremolor 10s ease-in-out infinite alternate;
+}
+@keyframes tremolor{
+  from { transform: translateY(-1%)}
+  to   { transform: translateY(1%)}
+}
+
+.site-header{
+  position:sticky; top:0; z-index:60;
+  background: rgba(5,7,10,.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #111827;
+  box-shadow: var(--shadow);
+}
+.brand{max-width:var(--max); margin:auto; padding: .9rem 1.1rem}
+.brand h1{margin:0; font-weight:900; font-size: clamp(2.2rem,4.2vw,3.4rem); letter-spacing:.08em; text-transform:uppercase; color:#fca5a5}
+.brand .mark{color:var(--accent)}
+.tagline{margin:.25rem 0 0; color:var(--muted)}
+
+.main-nav ul{
+  display:flex; flex-wrap:wrap; gap:.4rem .6rem; list-style:none; margin:0;
+  padding: .3rem 1rem 1rem; max-width:var(--max); margin-inline:auto;
+}
+.main-nav a{
+  text-decoration:none; color:#d1d5db;
+  background: linear-gradient(180deg,#0b0f14,#111827);
+  border:1px solid #1f2937;
+  padding:.55rem .8rem; border-radius:8px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+  transition: transform .2s ease, background .2s ease;
+}
+.main-nav a:hover{ transform: translateY(-2px); background:#1f2937; color:#fff }
+
+.layout{max-width:var(--max); margin:2rem auto; display:grid; grid-template-columns: 1fr minmax(280px, 360px); gap:2rem; padding:0 1rem}
+@media (max-width: 980px){ .layout{grid-template-columns: 1fr} }
+
+.content section{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.1rem 1.25rem;
+  border: 1px solid #111827;
+}
+.content h2{margin-top:0; font-size: clamp(1.4rem,2.6vw,2rem); text-transform:uppercase; letter-spacing:.1em}
+.content h3{text-transform:uppercase; letter-spacing:.08em; color:#fca5a5}
+
+.mapa{
+  height: 260px; display:grid; place-items:center;
+  color:#cbd5e1;
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(0deg, #0b0f14 0 6px, #0e141b 6px 12px),
+    radial-gradient(900px 200px at 50% -10%, rgba(239,68,68,.12), transparent 40%),
+    linear-gradient(#0b0f14, #0e141b);
+  border: 1px dashed #374151;
+  text-transform: uppercase; letter-spacing:.2em;
+}
+
+.sidebar{
+  position: sticky; top: 6.4rem; align-self:start;
+  background: rgba(7,9,12,.9);
+  padding: 1rem 1.1rem; border-radius: var(--radius);
+  border: 1px solid #1f2937; box-shadow: var(--shadow);
+}
+.sidebar h2{margin-top:.35rem; color:#fca5a5}
+.sidebar ul{margin:0 0 1rem 1.25rem}
+
+table{width:100%; border-collapse: collapse; font-variant-numeric: tabular-nums}
+thead th{background:#0f172a; color:#f3f4f6; text-align:left; padding:.7rem .85rem; border-bottom: 2px solid #1f2937}
+tbody td, tbody th{padding:.6rem .85rem; border-bottom: 1px dashed #1f2937}
+caption{caption-side:bottom; color:#9ca3af; padding:.5rem .2rem}
+
+blockquote{
+  margin:1rem 0; padding:1.1rem 1.25rem;
+  background: #0f172a; border-left: 10px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  box-shadow: inset 0 0 0 1px #1f2937;
+}
+mark{background:#7f1d1d; color:#fff; padding:.1em .35em; border-radius:4px; box-shadow: 0 0 0 1px #450a0a inset}
+details{border:1px solid #1f2937; border-radius: 12px; padding:.85rem 1rem; background:#0b0f14}
+details+details{margin-top:.95rem}
+
+.site-footer{text-align:center; color:#9ca3af; margin:3rem auto 2rem}
+
+/* efecte glitch més marcat al títol */
+@keyframes glitch2{
+  0%  { text-shadow: 2px 0 rgba(239,68,68,.5), -2px 0 rgba(59,130,246,.35)}
+  25% { text-shadow: -3px 0 rgba(239,68,68,.35), 3px 0 rgba(59,130,246,.25)}
+  50% { text-shadow: 4px 0 rgba(239,68,68,.45), -4px 0 rgba(59,130,246,.3)}
+  75% { text-shadow: -2px 0 rgba(239,68,68,.4), 2px 0 rgba(59,130,246,.35)}
+  100%{ text-shadow: 2px 0 rgba(239,68,68,.5), -2px 0 rgba(59,130,246,.35)}
+}
+.brand h1{ animation: glitch2 2.4s infinite }
+
+/* cursor personalitzat en seccions de risc */
+#taula-risc, #mapa{ cursor: crosshair }
+
+/* focus accessible però discret */
+:focus-visible{ outline: 2px dashed #ef4444; outline-offset: 3px }
